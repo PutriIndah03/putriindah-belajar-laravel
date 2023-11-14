@@ -24,8 +24,8 @@ class ProductController extends Controller
         $validate = $request->validated();
 
         $data = new product;
-        $data->name = $request->name;
-        $data->category = $request->category;
+        $data->product_name = $request->product_name;
+        $data->product_code = $request->product_code;
         $data->price = $request->price;
         $data->stock = $request->stock;
         $data->description = $request->description;
@@ -42,8 +42,8 @@ class ProductController extends Controller
         $data = Product::find($id);
         return view('pages.update')->with([
             'id' => $id,
-            'name' => $data->name,
-            'category' => $data->category,
+            'product_name' => $data->product_name,
+            'product_code' => $data->product_code,
             'price' => $data->price,
             'stock' => $data->stock,
             'description' => $data->description,
@@ -55,8 +55,8 @@ class ProductController extends Controller
     public function update(UpdateproductRequest $request, $id)
     {
         $data = Product::find($id);
-        $data->name = $request->name;
-        $data->category = $request->category;
+        $data->product_name = $request->product_name;
+        $data->product_code = $request->product_code;
         $data->price = $request->price;
         $data->stock = $request->stock;
         $data->description = $request->description;

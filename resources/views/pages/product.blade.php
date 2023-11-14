@@ -51,10 +51,10 @@
                         No
                     </th>
                     <th style="width: 13%">
-                        Nama
+                        Kode Produk
                     </th>
                     <th style="width: 15%;">
-                        Kategori
+                        Nama Produk
                     </th>
                     <th style="width: 10%;">
                         Harga
@@ -75,8 +75,8 @@
             @foreach($product as $p)
             <tr>
                 <td>{{ $p->id }}</td>
-                <td>{{ $p->name }}</td>
-                <td>{{ $p->category }}</td>
+                <td>{{ $p->product_code }}</td>
+                <td>{{ $p->product_name }}</td>
                 <td>{{ $p->price }}</td>
                 <td>{{ $p->stock }}</td>
                 <td>{{ $p->description }}</td>

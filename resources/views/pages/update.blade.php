@@ -36,21 +36,21 @@
         <form method="POST" action="{{ url('product/'. $id)}}">
             @csrf
             @method('PUT')
+            <div class="col-12">
+                <label for="product_code" class="form-label">Kode Produk</label>
+                <input type="text" class="form-control @error('product_code') is-invalid @enderror" id="product_code" name="product_code"
+                value="{{ $product_code }}">
+                @error('product_code')
+        <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+    @enderror
+            </div>
         <div class="col-12">
-            <label for="nama_produk" class="form-label">Nama Produk</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="nama_produk" name="name"
-            value="{{ $name }}">
+            <label for="product_name" class="form-label">Nama Produk</label>
+            <input type="text" class="form-control @error('product_name') is-invalid @enderror" id="product_name"
+            name="product_name" value="{{ $product_name }}">
             @error('name')
-    <div class="invalid-feedback">
-        {{ $message }}
-      </div>
-@enderror
-        </div>
-        <div class="col-12">
-            <label for="category" class="form-label">Kategori</label>
-            <input type="text" class="form-control @error('category') is-invalid @enderror" id="category" name="category"
-            value="{{ $category }}">
-            @error('category')
     <div class="invalid-feedback">
         {{ $message }}
       </div>
