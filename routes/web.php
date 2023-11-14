@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +20,13 @@ use App\Http\Controllers\homeController;
 
 Route::get('/biodata', [BiodataController::class, 'show']);
 Route::get('/home', [homeController::class, 'index']);
+Route::get('/home', function(){
+    return view('pages.dashboard');
+});
+
+
+//route CRUD
+route::resource('product', ProductController::class);
+Route::get('/produk/create', function(){
+    return view('pages.create');
+});
