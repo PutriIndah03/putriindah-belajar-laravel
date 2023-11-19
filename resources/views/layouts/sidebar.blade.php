@@ -53,13 +53,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
-              <p>
-                Logout
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-responsive-nav-link :href="route('logout')"
+                onclick="event.preventDefault();
+                this.closest('form').submit();">
+                {{ __('Log Out') }}
+            </x-responsive-nav-link>
+        </form>
           </li>
         </ul>
       </nav>
