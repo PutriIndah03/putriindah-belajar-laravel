@@ -23,7 +23,7 @@ class StoreproductRequest extends FormRequest
     {
         return [
             'product_name' => 'required|string|max:255',
-            'product_code' => 'required|string|max:255',
+            'product_code' => 'required|unique:products,product_code|string|min:4|max:4',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
             'description' => 'required|string',
@@ -32,8 +32,7 @@ class StoreproductRequest extends FormRequest
     public function messages(): array
 {
     return [
-        'title.required' => 'A title is required',
-        'body.required' => 'A message is required',
+        'product_code.unique' => 'code produk sudah ada',
     ];
 }
 }
