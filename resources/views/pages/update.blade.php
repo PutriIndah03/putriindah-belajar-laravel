@@ -39,7 +39,7 @@
             <div class="col-12">
                 <label for="product_code" class="form-label">Kode Produk</label>
                 <input type="text" class="form-control @error('product_code') is-invalid @enderror" id="product_code" name="product_code"
-                value="{{ $product_code }}">
+                value="{{ $product_code }}" disabled>
                 @error('product_code')
         <div class="invalid-feedback">
             {{ $message }}

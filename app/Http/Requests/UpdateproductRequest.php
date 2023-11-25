@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateproductRequest extends FormRequest
 {
@@ -23,7 +24,6 @@ class UpdateproductRequest extends FormRequest
     {
         return [
             'product_name' => 'required|string|max:255',
-            'product_code' => 'required|unique:products,product_code|string|min:4|max:4',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
             'description' => 'required|string',
@@ -32,7 +32,7 @@ class UpdateproductRequest extends FormRequest
     public function messages(): array
 {
     return [
-        'product_code.unique' => 'code produk sudah ada',
+
     ];
 }
 }
