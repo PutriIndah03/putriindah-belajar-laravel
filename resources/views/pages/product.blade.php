@@ -82,7 +82,7 @@
                 <td>{{ $p->description }}</td>
                 <td>
                     <a href="{{ url('product/'. $p->id) }}"><button class='btn btn-primary btn-sm' >Update</button></a>
-                    <form action="{{ url('product/'. $p->id) }}" method="POST" style="display: inline">
+                    <form onsubmit= 'return deleteData()' action="{{ url('product/'. $p->id) }}" method="POST" style="display: inline">
                         @csrf
                         @method('DELETE')
                         <button class='btn btn-danger btn-sm'>Delete</button></a>
@@ -100,5 +100,12 @@
     </section>
     <!-- /.content -->
   </div>
+  <script>
+    function deleteData(){
+        pesan = confirm('Apakah anda yakin akan menghapus data ini?');
+        if (pesan) return true;
+        else return false;
+    }
+  </script>
 
 @endsection
