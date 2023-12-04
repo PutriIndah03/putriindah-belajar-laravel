@@ -57,6 +57,20 @@
 @enderror
         </div>
         <div class="col-12">
+            <label for="category_id" class="form-label">Kategori</label>
+            <select name="category_id" id="category_id" class="form-control">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ $category_id == $category->id ? 'selected' : '' }}>
+                        {{ $category->category_name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+
+
+
+        <div class="col-12">
             <label for="harga" class="form-label">Harga</label>
             <input type="number" class="form-control @error('price') is-invalid @enderror" id="harga" name="price"
             value="{{ $price}}">

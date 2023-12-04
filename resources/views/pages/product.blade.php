@@ -26,7 +26,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-            <a href="{{ url('produk/create')}}"><button class="btn btn-success btn-sm" >Tambah data</button></a>
+            <a href="{{ url('/products/create')}}"><button class="btn btn-success btn-sm" >Tambah data</button></a>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -56,6 +56,9 @@
                     <th style="width: 15%;">
                         Nama Produk
                     </th>
+                    <th style="width: 15%">
+                        Kategori
+                    </th>
                     <th style="width: 10%;">
                         Harga
                     </th>
@@ -77,6 +80,7 @@
                 <td>{{ $p->id }}</td>
                 <td>{{ $p->product_code }}</td>
                 <td>{{ $p->product_name }}</td>
+                <td>{{ optional($p->category)->category_name }}</td>
                 <td>{{ $p->price }}</td>
                 <td>{{ $p->stock }}</td>
                 <td>{{ $p->description }}</td>

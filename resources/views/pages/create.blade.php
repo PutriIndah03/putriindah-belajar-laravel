@@ -57,6 +57,16 @@
         </div>
 
         <div class="col-12">
+            <label for="product_name" class="form-label">Kategori</label>
+            <select name="category_id" id="category_id" class="form-control">
+            @foreach ( $category as $row )
+            <option value="{{ $row->id }}"> {{ $row->category_name }} </option>
+
+            @endforeach
+        </select>
+        </div>
+
+        <div class="col-12">
             <label for="harga" class="form-label">Harga</label>
             <input type="number" class="form-control @error('price') is-invalid @enderror" id="harga" name="price"
             value="{{ old('price') }}">

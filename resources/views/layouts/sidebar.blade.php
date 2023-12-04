@@ -53,6 +53,15 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ '/chart-data' }}" class="nav-link">
+              <i class="nav-icon fas fa-chart-area"></i>
+              <p>
+                Chart Produk
+                <i class="right badge badge-danger"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <x-responsive-nav-link :href="route('logout')"

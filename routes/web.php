@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProductController;
@@ -35,9 +36,9 @@ Route::get('/dashboard', [homeController::class, 'index'])->name('dashboard');
 
 //route CRUD
 route::resource('product', ProductController::class);
-Route::get('/produk/create', function(){
-    return view('pages.create');
-});
+Route::get('/products/create', [ProductController::class, 'create']);
+Route::get('/chart-data', [ProductController::class, 'chart']);
+
 });
 
 require __DIR__.'/auth.php';
