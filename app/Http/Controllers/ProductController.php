@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
-use App\Http\Requests\StoreproductRequest;
-use App\Http\Requests\UpdateproductRequest;
 use App\Models\category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreproductRequest;
+use App\Http\Requests\UpdateproductRequest;
 
 class ProductController extends Controller
 {
@@ -15,31 +16,46 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $role = Auth::user()->role;
         $products = Product::with('category')->get();
-        return view('pages.product', ['product' => $products]);
+        return view('pages.product', ['product' => $products, 'role' => $role]);
     }
     /**
      * Store a newly created resource in storage.
      */
     public function create()
     {
-        $categories = category::all();
-        return view('pages.create', ['category' => $categories]);
+        $role = Auth::user()->role;
+
+        if($role === 'admin'){
+            $categories = category::all();
+            return view('pages.create', ['category' => $categories]);
+        }else{
+            return view('pages.error');
+        }
+
     }
     public function store(StoreproductRequest $request)
     {
-        $validate = $request->validated();
+        $role = Auth::user()->role;
 
-        $data = new product;
-        $data->product_name = $request->product_name;
-        $data->product_code = $request->product_code;
-        $data->category_id = $request->category_id;
-        $data->price = $request->price;
-        $data->stock = $request->stock;
-        $data->description = $request->description;
-        $data->save();
+        if($role === 'admin'){
 
-        return redirect('product')->with('msg', 'produk telah ditambahkan');
+            $validate = $request->validated();
+
+            $data = new product;
+            $data->product_name = $request->product_name;
+            $data->product_code = $request->product_code;
+            $data->category_id = $request->category_id;
+            $data->price = $request->price;
+            $data->stock = $request->stock;
+            $data->description = $request->description;
+            $data->save();
+
+            return redirect('product')->with('msg', 'produk telah ditambahkan');
+        } else{
+            return view('pages.error');
+        }
     }
 
     /**
@@ -47,35 +63,48 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $data = Product::with('category')->findOrFail($id);
-        $categories = Category::all();
+        $role = Auth::user()->role;
 
-        return view('pages.update')->with([
-            'id' => $id,
-            'product_name' => $data->product_name,
-            'product_code' => $data->product_code,
-            'category_id' => $data->category->id, // Gunakan id kategori daripada category_name
-            'price' => $data->price,
-            'stock' => $data->stock,
-            'description' => $data->description,
-            'categories' => $categories,
-        ]);
+        if($role === 'admin'){
+
+            $data = Product::with('category')->findOrFail($id);
+            $categories = Category::all();
+
+            return view('pages.update')->with([
+                'id' => $id,
+                'product_name' => $data->product_name,
+                'product_code' => $data->product_code,
+                'category_id' => $data->category->id, // Gunakan id kategori daripada category_name
+                'price' => $data->price,
+                'stock' => $data->stock,
+                'description' => $data->description,
+                'categories' => $categories,
+            ]);
+        }else{
+            return view('pages.error');
+        }
     }
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateproductRequest $request, $id)
     {
-        $data = Product::findOrFail($id);
-        $data->product_name = $request->product_name;
-        $data->product_code = $request->product_code;
-        $data->category_id = $request->category_id;
-        $data->price = $request->price;
-        $data->stock = $request->stock;
-        $data->description = $request->description;
-        $data->save();
+        $role = Auth::user()->role;
+        if($role === 'admin'){
 
-        return redirect('product')->with('msg', 'produk telah diupdate');
+            $data = Product::findOrFail($id);
+            $data->product_name = $request->product_name;
+            $data->product_code = $request->product_code;
+            $data->category_id = $request->category_id;
+            $data->price = $request->price;
+            $data->stock = $request->stock;
+            $data->description = $request->description;
+            $data->save();
+
+            return redirect('product')->with('msg', 'produk telah diupdate');
+        }else {
+            return view('pages.error');
+        }
     }
 
     /**
@@ -83,9 +112,16 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $data = Product::find($id);
-        $data->delete();
-        return redirect('product')->with('msg', 'produk telah dihapus');
+        $role = Auth::user()->role;
+
+        if($role === 'admin'){
+
+            $data = Product::find($id);
+            $data->delete();
+            return redirect('product')->with('msg', 'produk telah dihapus');
+        } else{
+            return view('pages.error');
+        }
     }
     public function chart()
     {

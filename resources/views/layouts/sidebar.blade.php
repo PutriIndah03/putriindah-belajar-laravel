@@ -35,7 +35,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ 'dashboard' }}" class="nav-link">
+            <a href="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ 'product' }}" class="nav-link">
+            <a href="/product" class="nav-link">
               <i class="nav-icon fa fa-cubes"></i>
               <p>
                 Produk
@@ -53,7 +53,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ '/chart-data' }}" class="nav-link">
+            <a href="/chart-data" class="nav-link">
               <i class="nav-icon fas fa-chart-area"></i>
               <p>
                 Chart Produk

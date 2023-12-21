@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $categories = [
+            ['category_name' => 'Sport'],
+            ['category_name' => 'Daily'],
+            ['category_name' => 'Accessories'],
+        ];
+
+        category::insert($categories);
     }
 }

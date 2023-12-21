@@ -26,8 +26,9 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
+        @if($role == 'admin')
             <a href="{{ url('/products/create')}}"><button class="btn btn-success btn-sm" >Tambah data</button></a>
-
+        @endif
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
@@ -68,9 +69,11 @@
                     <th style="width: 15%;">
                         deskripsi
                     </th>
+                    @if ($role == 'admin')
                     <th style="width: 15%">
                     Aksi
                     </th>
+                    @endif
                   </tr>
               </thead>
               <tbody>
@@ -84,6 +87,7 @@
                 <td>{{ $p->price }}</td>
                 <td>{{ $p->stock }}</td>
                 <td>{{ $p->description }}</td>
+                @if ($role == 'admin')
                 <td>
                     <a href="{{ url('product/'. $p->id) }}"><button class='btn btn-primary btn-sm' >Update</button></a>
                     <form onsubmit= 'return deleteData()' action="{{ url('product/'. $p->id) }}" method="POST" style="display: inline">
@@ -92,6 +96,7 @@
                         <button class='btn btn-danger btn-sm'>Delete</button></a>
                     </form>
                 </td>
+                @endif
             </tr>
             @endforeach
               </tbody>
